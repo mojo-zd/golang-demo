@@ -1,0 +1,43 @@
+### golang目录规范
+
+#### /pkg
+/pkg 目录是 Go 语言项目中非常常见的目录。这个目录中存放的就是项目中可以被外部应用使用的代码库
+
+#### /internal
+私有代码推荐放到 /internal 目录中。真正的项目代码应该写在 /internal/app 里，同时这些内部应用依赖的代码库应该在 /internal/pkg 子目录和 /pkg 中。当我们在其他项目引入包含 internal 的依赖时，Go 语言会在编译时报错， 同一个项目下引用并不会有什么问题
+
+#### /cmd
+/cmd 目录中存储的都是当前项目中的可执行文件，该目录下的每一个子目录都应该包含我们希望有的可执行文件。我们不应该在 /cmd 目录中放置太多的代码，我们应该将公有代码放置到 /pkg 中并将私有代码放置到 /internal 中并在 /cmd 中引入这些包，保证 main 函数中的代码尽可能简单和少。
+
+#### /api
+/api 目录存放api规范文件 如:swagger文档
+
+#### /web
+web应用的特定组件， 静态资源、服务器端模板等等
+
+#### /configs
+默认的配置文件或者是配置文件模板
+
+#### /scripts
+各种构建、安装、分析等脚本
+
+#### /docs
+设计文档或者用户手册
+
+#### /examples
+demo目录
+
+#### assets
+images | logos
+
+### 代码检查工具
+- golint  # 静态检查工具
+- golangci-lint # 定制化检查工具
+
+### mock
+- interface mock
+- sqlmock
+- httpmock
+
+### Demo
+- cobra
